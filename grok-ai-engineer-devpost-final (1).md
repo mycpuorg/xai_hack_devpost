@@ -16,7 +16,10 @@ X is the main bastion of online AI research content. Ideas surface in threads fr
 
 ---
 
-## What it does
+## Dashboard Demo
+
+![Dashboard](./devpost_visuals/Screenshot%202025-12-07%20at%2012.00.56 PM.png)
+
 
 ### The Full Pipeline
 
