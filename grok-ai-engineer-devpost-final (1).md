@@ -66,59 +66,59 @@ We tested Helion attention kernels (optimized via KernelEvolve) against PyTorch'
 
 ![Key Metrics](devpost_visuals/metrics_summary.png)
 
-| Metric | Value |
-|--------|-------|
-| **Average Speedup** | **1.06x** |
-| **Maximum Speedup** | **1.27x** |
-| **Minimum Speedup** | 1.00x (never slower) |
-| **Best Model/Config** | Qwen2-0.5B @ seq=4096 |
-| **Avg Speedup @ 4096 tokens** | **1.11x** |
+| Metric                        | Value                 |
+| ----------------------------- | --------------------- |
+| **Average Speedup**           | **1.06x**             |
+| **Maximum Speedup**           | **1.27x**             |
+| **Minimum Speedup**           | 1.00x (never slower)  |
+| **Best Model/Config**         | Qwen2-0.5B @ seq=4096 |
+| **Avg Speedup @ 4096 tokens** | **1.11x**             |
 
 ### Detailed Results: Selected Models
 
 **Qwen2-0.5B** (24 layers, GQA 14:2)
 
-| Seq Length | Helion (ms) | PyTorch (ms) | Speedup |
-|------------|-------------|--------------|---------|
-| 512 | 13.61 | 14.33 | 1.05x |
-| 1024 | 20.52 | 22.33 | 1.09x |
-| 2048 | 36.42 | 43.63 | **1.20x** |
-| 4096 | 77.10 | 98.31 | **1.27x** |
+| Seq Length | Helion (ms) | PyTorch (ms) | Speedup   |
+| ---------- | ----------- | ------------ | --------- |
+| 512        | 13.61       | 14.33        | 1.05x     |
+| 1024       | 20.52       | 22.33        | 1.09x     |
+| 2048       | 36.42       | 43.63        | **1.20x** |
+| 4096       | 77.10       | 98.31        | **1.27x** |
 
 **Llama-3.2-1B** (16 layers, GQA 32:8)
 
-| Seq Length | Helion (ms) | PyTorch (ms) | Speedup |
-|------------|-------------|--------------|---------|
-| 512 | 21.67 | 22.29 | 1.03x |
-| 1024 | 41.14 | 43.63 | 1.06x |
-| 2048 | 78.90 | 86.12 | 1.09x |
-| 4096 | 151.01 | 179.55 | **1.19x** |
+| Seq Length | Helion (ms) | PyTorch (ms) | Speedup   |
+| ---------- | ----------- | ------------ | --------- |
+| 512        | 21.67       | 22.29        | 1.03x     |
+| 1024       | 41.14       | 43.63        | 1.06x     |
+| 2048       | 78.90       | 86.12        | 1.09x     |
+| 4096       | 151.01      | 179.55       | **1.19x** |
 
 **SmolLM2-1.7B** (24 layers, MHA 32:32)
 
-| Seq Length | Helion (ms) | PyTorch (ms) | Speedup |
-|------------|-------------|--------------|---------|
-| 512 | 34.06 | 34.99 | 1.03x |
-| 1024 | 66.03 | 69.86 | 1.06x |
-| 2048 | 128.25 | 139.08 | 1.08x |
-| 4096 | 247.45 | 290.98 | **1.18x** |
+| Seq Length | Helion (ms) | PyTorch (ms) | Speedup   |
+| ---------- | ----------- | ------------ | --------- |
+| 512        | 34.06       | 34.99        | 1.03x     |
+| 1024       | 66.03       | 69.86        | 1.06x     |
+| 2048       | 128.25      | 139.08       | 1.08x     |
+| 4096       | 247.45      | 290.98       | **1.18x** |
 
 ### All 10 Models Tested
 
 ![Speedup Chart](devpost_visuals/speedup_chart.png)
 
-| Model | Params | 512 | 1024 | 2048 | 4096 | Avg |
-|-------|--------|-----|------|------|------|-----|
-| Qwen2-0.5B | 0.5B | 1.05x | 1.09x | **1.20x** | **1.27x** | 1.15x |
-| Qwen3-0.6B | 0.6B | 1.01x | 1.06x | **1.13x** | **1.13x** | 1.08x |
-| Llama-3.2-1B | 1B | 1.03x | 1.06x | 1.09x | **1.19x** | 1.09x |
-| Qwen2-1.5B | 1.5B | 1.00x | 1.03x | 1.02x | 1.09x | 1.03x |
-| SmolLM2-1.7B | 1.7B | 1.03x | 1.06x | 1.08x | **1.18x** | 1.09x |
-| Phi-2 | 2.7B | 1.00x | 1.01x | 1.02x | 1.02x | 1.01x |
-| Qwen2.5-3B | 3B | 1.00x | 1.02x | 1.04x | 1.05x | 1.03x |
-| Llama-3.2-3B | 3B | 1.01x | 1.01x | 1.04x | 1.06x | 1.03x |
-| Phi-3-mini | 3.8B | 1.00x | 1.01x | 1.02x | 1.02x | 1.01x |
-| rnj-1 | 8B | 1.01x | 1.01x | 1.01x | 1.04x | 1.02x |
+| Model        | Params | 512   | 1024  | 2048      | 4096      | Avg   |
+| ------------ | ------ | ----- | ----- | --------- | --------- | ----- |
+| Qwen2-0.5B   | 0.5B   | 1.05x | 1.09x | **1.20x** | **1.27x** | 1.15x |
+| Qwen3-0.6B   | 0.6B   | 1.01x | 1.06x | **1.13x** | **1.13x** | 1.08x |
+| Llama-3.2-1B | 1B     | 1.03x | 1.06x | 1.09x     | **1.19x** | 1.09x |
+| Qwen2-1.5B   | 1.5B   | 1.00x | 1.03x | 1.02x     | 1.09x     | 1.03x |
+| SmolLM2-1.7B | 1.7B   | 1.03x | 1.06x | 1.08x     | **1.18x** | 1.09x |
+| Phi-2        | 2.7B   | 1.00x | 1.01x | 1.02x     | 1.02x     | 1.01x |
+| Qwen2.5-3B   | 3B     | 1.00x | 1.02x | 1.04x     | 1.05x     | 1.03x |
+| Llama-3.2-3B | 3B     | 1.01x | 1.01x | 1.04x     | 1.06x     | 1.03x |
+| Phi-3-mini   | 3.8B   | 1.00x | 1.01x | 1.02x     | 1.02x     | 1.01x |
+| rnj-1        | 8B     | 1.01x | 1.01x | 1.01x     | 1.04x     | 1.02x |
 
 ### Key Findings
 
@@ -135,7 +135,7 @@ We tested Helion attention kernels (optimized via KernelEvolve) against PyTorch'
 
 ### OpenEvolve Autotuner
 
-We use an evolutionary algorithm powered by LLMs to optimize kernel configurations:
+We use an evolutionary algorithm powered Grok to optimize kernel configurations:
 
 ![Evolution Chart](devpost_visuals/evolution_chart.png)
 
@@ -162,12 +162,12 @@ best_config = tuner.tune()
 
 ### Tuning Results (head_dim=64, seq_len=1024)
 
-| Configuration | Block Sizes | Warps | Stages | TFLOPS | Speedup |
-|--------------|-------------|-------|--------|--------|---------|
-| **Tuned (Best)** | [1, 128, 64] | 4 | 3 | **93.99** | **1.19x** |
-| Baseline | [1, 64, 64] | 4 | 2 | 78.93 | 1.00x |
-| Conservative | [1, 128, 64] | 4 | 2 | 82.21 | 1.04x |
-| High Warps | [1, 64, 64] | 8 | 3 | 78.51 | 0.99x |
+| Configuration    | Block Sizes  | Warps | Stages | TFLOPS    | Speedup   |
+| ---------------- | ------------ | ----- | ------ | --------- | --------- |
+| **Tuned (Best)** | [1, 128, 64] | 4     | 3      | **93.99** | **1.19x** |
+| Baseline         | [1, 64, 64]  | 4     | 2      | 78.93     | 1.00x     |
+| Conservative     | [1, 128, 64] | 4     | 2      | 82.21     | 1.04x     |
+| High Warps       | [1, 64, 64]  | 8     | 3      | 78.51     | 0.99x     |
 
 The tuned configuration delivers **19.1% improvement** over the baseline—found automatically through **100 evolutionary evaluations** on NVIDIA B200.
 
@@ -216,7 +216,7 @@ The `ThreadSummary` captures entire conversation threads—not just individual t
 
 ![X Integration Flow](devpost_visuals/x_integration.png)
 
-**Grok for Ideation:**
+<!-- **Grok for Ideation:**
 
 ```python
 from xai_sdk import Client
@@ -233,7 +233,7 @@ chat = client.chat.create(
         )
     ],
 )
-```
+``` -->
 
 **X API for Thread Reconstruction:**
 
@@ -292,15 +292,15 @@ class GenerateOptimizationIdeas(dspy.Signature):
 
 Helion is a Python DSL that compiles to Triton. From a single kernel definition, the autotuner explores:
 
-| Parameter | Search Space |
-|-----------|--------------|
-| `block_sizes` | Tile dimensions for each loop |
-| `loop_orders` | Permutation of iteration order |
-| `indexing` | pointer, block_ptr, tensor_descriptor (TMA) |
-| `pid_type` | flat, xyz, persistent_blocked |
-| `num_warps` | 2, 4, 8 |
-| `num_stages` | 2, 3, 4 |
-| `warp_specialize` | Blackwell warp specialization |
+| Parameter         | Search Space                                |
+| ----------------- | ------------------------------------------- |
+| `block_sizes`     | Tile dimensions for each loop               |
+| `loop_orders`     | Permutation of iteration order              |
+| `indexing`        | pointer, block_ptr, tensor_descriptor (TMA) |
+| `pid_type`        | flat, xyz, persistent_blocked               |
+| `num_warps`       | 2, 4, 8                                     |
+| `num_stages`      | 2, 3, 4                                     |
+| `warp_specialize` | Blackwell warp specialization               |
 
 ---
 
